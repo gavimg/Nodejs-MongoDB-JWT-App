@@ -1,0 +1,17 @@
+{
+    "name": "node-rest-shop",
+    "version": "1.0.0",
+    "description": "A sample restful app",
+    "main": "index.js",
+    "scripts": {
+        "test": "node rest ",
+        "start": "nodemon server.js"
+    },
+    "author": "Gavishiddappa Gadagi",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.18.2",
+        "express": "^4.16.2",
+        "morgan": "^1.9.0"
+    }
+}
