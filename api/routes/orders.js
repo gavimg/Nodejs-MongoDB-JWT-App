@@ -1,38 +1,16 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
+const checkAuth = require('../middleware/check-auth');
+const OrdersController = require('../controllers/orders');
 
 
+router.get('/', checkAuth, OrdersController.order_get_all);
 
-router.get('/', (req, res, next) => {
-    res.status(200).json({
-        message: 'Orders were fetched'
-    })
-});
+router.post('/', checkAuth, OrdersController.order_create);
 
-router.post('/', (req, res, next) => {
-    console.log(req.body.productId);
-    console.log(req.body.quantity);
-    const order = {
-        productId: req.body.productId,
-        quantity: req.body.quantity
-    }
-    res.status(201).json({
-        message: 'Orders were created',
-        order: order
-    })
-});
+router.get('/:orderId', checkAuth, OrdersController.order_get_byId);
 
-router.get('/:orderId', (req, res, next) => {
-    res.status(200).json({
-        message: 'Orders details',
-        orderId: req.params.orderId
-    })
-});
-
-router.delete('/:orderId', (req, res, next) => {
-    res.status(200).json({
-        message: 'Orders canceled...!'
-    })
-});
+router.delete('/:orderId', checkAuth, OrdersController.order_delete_byId);
 
 module.exports = router;
